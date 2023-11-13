@@ -47,19 +47,20 @@ public class MarsRover {
     }
 
     private static String turnRight(Position position, Direction direction1, String instructions) {
-        if (direction1.equals(Direction.N)) {
-            return move(new Position(position.getX(), position.getY()), Direction.E,
-                        instructions.substring(1, instructions.length()));
-        } else if (direction1.equals(Direction.W)) {
-            return move(new Position(position.getX(), position.getY()), Direction.N,
-                        instructions.substring(1, instructions.length()));
-        } else if (direction1.equals(Direction.S)) {
-            return move(new Position(position.getX(), position.getY()), Direction.W,
-                        instructions.substring(1, instructions.length()));
-        } else if (direction1.equals(Direction.E)) {
-            return move(new Position(position.getX(), position.getY()), Direction.S,
-                        instructions.substring(1, instructions.length()));
-        }
+		switch (direction1) {
+			case N:
+				return move(new Position(position.getX(), position.getY()), Direction.E,
+							instructions.substring(1, instructions.length()));
+			case W:
+				return move(new Position(position.getX(), position.getY()), Direction.N,
+							instructions.substring(1, instructions.length()));
+			case S:
+				return move(new Position(position.getX(), position.getY()), Direction.W,
+							instructions.substring(1, instructions.length()));
+			case E:
+				return move(new Position(position.getX(), position.getY()), Direction.S,
+							instructions.substring(1, instructions.length()));
+		}
         return null;
     }
 
