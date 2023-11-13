@@ -7,9 +7,8 @@ public class MarsRover {
             char instruction = instructions.charAt(0);
 			switch (instruction) {
 				case 'L': {
-					String position1 = turnLeft(position, direction1, instructions);
-					if (position1 != null)
-						return position1;
+					if (turnLeft(position, direction1, instructions) != null)
+						return turnLeft(position, direction1, instructions);
 					break;
 				}
 				case 'R': {
@@ -30,19 +29,20 @@ public class MarsRover {
     }
 
     private static String goFront(Position position, Direction direction1, String instructions) {
-        if (direction1.equals(Direction.N)) {
-            return move(new Position(position.getX(), position.getY() + 1),
-                        Direction.N, instructions.substring(1, instructions.length()));
-        } else if (direction1.equals(Direction.S)) {
-            return move(new Position(position.getX(), position.getY() - 1),
-                        Direction.S, instructions.substring(1, instructions.length()));
-        } else if (direction1.equals(Direction.W)) {
-            return move(new Position(position.getX() - 1, position.getY()),
-                        Direction.W, instructions.substring(1, instructions.length()));
-        } else if (direction1.equals(Direction.E)) {
-            return move(new Position(position.getX() + 1, position.getY()),
-                        Direction.E, instructions.substring(1, instructions.length()));
-        }
+		switch (direction1) {
+			case N:
+				return move(new Position(position.getX(), position.getY() + 1),
+							Direction.N, instructions.substring(1, instructions.length()));
+			case S:
+				return move(new Position(position.getX(), position.getY() - 1),
+							Direction.S, instructions.substring(1, instructions.length()));
+			case W:
+				return move(new Position(position.getX() - 1, position.getY()),
+							Direction.W, instructions.substring(1, instructions.length()));
+			case E:
+				return move(new Position(position.getX() + 1, position.getY()),
+							Direction.E, instructions.substring(1, instructions.length()));
+		}
         return null;
     }
 
