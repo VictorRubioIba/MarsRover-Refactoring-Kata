@@ -2,41 +2,53 @@ package mars.rover;
 
 public class MarsRover {
 
-    public static String move(Position position, char direction, String instructions) {
+    public static String move(Position position, Direction direction1, String instructions) {
         if (!instructions.isEmpty()) {
             char instruction = instructions.charAt(0);
             if (instruction == 'L') {
-                if (direction == 'N') {
-                    return move(new Position(position.getX(), position.getY()), 'W', instructions.substring(1, instructions.length()));
-                } else if (direction == 'W') {
-                    return move(new Position(position.getX(), position.getY()), 'S', instructions.substring(1, instructions.length()));
-                } else if (direction == 'S') {
-                    return move(new Position(position.getX(), position.getY()), 'E', instructions.substring(1, instructions.length()));
-                } else if (direction == 'E') {
-                    return move(new Position(position.getX(), position.getY()), 'N', instructions.substring(1, instructions.length()));
+                if (direction1.equals(Direction.N)) {
+                    return move(new Position(position.getX(), position.getY()), Direction.W,
+                                instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.W)) {
+                    return move(new Position(position.getX(), position.getY()),Direction.S,
+                                instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.S)) {
+                    return move(new Position(position.getX(), position.getY()), Direction.E,
+                                instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.E)) {
+                    return move(new Position(position.getX(), position.getY()), Direction.N,
+                                instructions.substring(1, instructions.length()));
                 }
             } else if (instruction == 'R') {
-                if (direction == 'N') {
-                    return move(new Position(position.getX(), position.getY()), 'E', instructions.substring(1, instructions.length()));
-                } else if (direction == 'W') {
-                    return move(new Position(position.getX(), position.getY()), 'N', instructions.substring(1, instructions.length()));
-                } else if (direction == 'S') {
-                    return move(new Position(position.getX(), position.getY()), 'W', instructions.substring(1, instructions.length()));
-                } else if (direction == 'E') {
-                    return move(new Position(position.getX(), position.getY()), 'S', instructions.substring(1, instructions.length()));
+                if (direction1.equals(Direction.N)) {
+                    return move(new Position(position.getX(), position.getY()), Direction.E,
+                                instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.W)) {
+                    return move(new Position(position.getX(), position.getY()), Direction.N,
+                                instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.S)) {
+                    return move(new Position(position.getX(), position.getY()), Direction.W,
+                                instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.E)) {
+                    return move(new Position(position.getX(), position.getY()),Direction.S,
+                                instructions.substring(1, instructions.length()));
                 }
             } else if (instruction == 'M') {
-                if (direction == 'N') {
-                    return move(new Position(position.getX(), position.getY() + 1), 'N', instructions.substring(1, instructions.length()));
-                } else if (direction == 'S') {
-                    return move(new Position(position.getX(), position.getY() - 1), 'S', instructions.substring(1, instructions.length()));
-                } else if (direction == 'W') {
-                    return move(new Position(position.getX() - 1, position.getY()), 'W', instructions.substring(1, instructions.length()));
-                } else if (direction == 'E') {
-                    return move(new Position(position.getX() + 1, position.getY()), 'E', instructions.substring(1, instructions.length()));
+                if (direction1.equals(Direction.N)) {
+                    return move(new Position(position.getX(), position.getY() + 1),
+                                Direction.N, instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.S)) {
+                    return move(new Position(position.getX(), position.getY() - 1),
+                                Direction.S, instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.W)) {
+                    return move(new Position(position.getX() - 1, position.getY()),
+                                Direction.W, instructions.substring(1, instructions.length()));
+                } else if (direction1.equals(Direction.E)) {
+                    return move(new Position(position.getX() + 1, position.getY()),
+                                Direction.E, instructions.substring(1, instructions.length()));
                 }
             }
         }
-        return position.getX() + " " + position.getY() + " " + direction;
+        return position.getX() + " " + position.getY() + " " + direction1;
     }
 }
