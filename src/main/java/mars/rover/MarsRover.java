@@ -2,82 +2,96 @@ package mars.rover;
 
 public class MarsRover {
 
-    public static String move(Position position, Direction direction, String instructions) {
-        if (!instructions.isEmpty()) {
-            char instruction = instructions.charAt(0);
+    public static String move(Position position, Movement movement) {
+        if (!movement.getInstructions()
+			.isEmpty()) {
+            char instruction = movement.getInstructions()
+				.charAt(0);
 			switch (instruction) {
 				case 'L': {
-					return turnLeft(position, direction, instructions);
+					return turnLeft(position, new Movement(movement.getDirection(),
+														   movement.getInstructions()));
 				}
 				case 'R': {
-					return turnRight(position, direction, instructions);
+					return turnRight(position, new Movement(movement.getDirection(),
+															movement.getInstructions()));
 				}
 				case 'M': {
-					 return goFront(position, direction, instructions);
+					 return goFront(position, new Movement(movement.getDirection(), movement.getInstructions()));
 				}
 				default:
 					throw new IllegalStateException("Unexpected value: " + instruction);
 			}
         }
-        return position.getX() + " " + position.getY() + " " + direction;
+        return position.getX() + " " + position.getY() + " " + movement.getDirection();
     }
 
-    private static String goFront(Position position, Direction direction, String instructions) {
-		switch (direction) {
+    private static String goFront(Position position, Movement movement) {
+		switch (movement.getDirection()) {
 			case N:
 				return move(new Position(position.getX(), position.getY() + 1),
-							Direction.N, instructions.substring(1, instructions.length()));
+							new Movement(Direction.N, movement.getInstructions().substring(1)));
 			case S:
 				return move(new Position(position.getX(), position.getY() - 1),
-							Direction.S, instructions.substring(1, instructions.length()));
+							new Movement(Direction.S, movement.getInstructions().substring(1)));
 			case W:
 				return move(new Position(position.getX() - 1, position.getY()),
-							Direction.W, instructions.substring(1, instructions.length()));
+							new Movement(Direction.W, movement.getInstructions().substring(1)));
 			case E:
 				return move(new Position(position.getX() + 1, position.getY()),
-							Direction.E, instructions.substring(1, instructions.length()));
+							new Movement(Direction.E, movement.getInstructions().substring(1)));
 			default:
-				throw new IllegalStateException("Unexpected value: " + direction);
+				throw new IllegalStateException("Unexpected value: " + movement.getDirection());
 		}
 
     }
 
-    private static String turnRight(Position position, Direction direction, String instructions) {
-		switch (direction) {
+    private static String turnRight(Position position, Movement movement) {
+		switch (movement.getDirection()) {
 			case N:
-				return move(new Position(position.getX(), position.getY()), Direction.E,
-							instructions.substring(1, instructions.length()));
+				return move(new Position(position.getX(), position.getY()),
+							new Movement(Direction.E, movement.getInstructions().substring(1)));
 			case W:
-				return move(new Position(position.getX(), position.getY()), Direction.N,
-							instructions.substring(1, instructions.length()));
+				return move(new Position(position.getX(), position.getY()),
+							new Movement(Direction.N, movement.getInstructions().substring(1)));
 			case S:
-				return move(new Position(position.getX(), position.getY()), Direction.W,
-							instructions.substring(1, instructions.length()));
+				return move(new Position(position.getX(), position.getY()),
+							new Movement(Direction.W, movement.getInstructions().substring(1)));
 			case E:
-				return move(new Position(position.getX(), position.getY()), Direction.S,
-							instructions.substring(1, instructions.length()));
+				return move(new Position(position.getX(), position.getY()),
+							new Movement(Direction.S,
+										 movement.getInstructions()
+											 .substring(1)));
 			default:
-				throw new IllegalStateException("Unexpected value: " + direction);
+				throw new IllegalStateException("Unexpected value: " + movement.getDirection());
 		}
 
     }
 
-    private static String turnLeft(Position position, Direction direction1, String instructions) {
-		switch (direction1) {
+    private static String turnLeft(Position position, Movement movement) {
+		switch (movement.getDirection()) {
 			case N:
-				return move(new Position(position.getX(), position.getY()), Direction.W,
-							instructions.substring(1, instructions.length()));
+				return move(new Position(position.getX(), position.getY()),
+							new Movement(Direction.W,
+										 movement.getInstructions()
+											 .substring(1)));
 			case W:
-				return move(new Position(position.getX(), position.getY()), Direction.S,
-							instructions.substring(1, instructions.length()));
+				return move(new Position(position.getX(), position.getY()),
+							new Movement(Direction.S,
+										 movement.getInstructions()
+											 .substring(1)));
 			case S:
-				return move(new Position(position.getX(), position.getY()), Direction.E,
-							instructions.substring(1, instructions.length()));
+				return move(new Position(position.getX(), position.getY()),
+							new Movement(Direction.E,
+										 movement.getInstructions()
+											 .substring(1)));
 			case E:
-				return move(new Position(position.getX(), position.getY()), Direction.N,
-							instructions.substring(1, instructions.length()));
+				return move(new Position(position.getX(), position.getY()),
+							new Movement(Direction.N,
+										 movement.getInstructions()
+											 .substring(1)));
 			default:
-				throw new IllegalStateException("Unexpected value: " + direction1);
+				throw new IllegalStateException("Unexpected value: " + movement.getDirection());
 		}
 
     }
