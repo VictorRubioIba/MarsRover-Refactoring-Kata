@@ -42,8 +42,10 @@ public class MarsRover {
 			case E:
 				return move(new Position(position.getX() + 1, position.getY()),
 							Direction.E, instructions.substring(1, instructions.length()));
+			default:
+				throw new IllegalStateException("Unexpected value: " + direction1);
 		}
-        return null;
+
     }
 
     private static String turnRight(Position position, Direction direction1, String instructions) {
@@ -60,8 +62,10 @@ public class MarsRover {
 			case E:
 				return move(new Position(position.getX(), position.getY()), Direction.S,
 							instructions.substring(1, instructions.length()));
+			default:
+				throw new IllegalStateException("Unexpected value: " + direction1);
 		}
-        return null;
+
     }
 
     private static String turnLeft(Position position, Direction direction1, String instructions) {
@@ -78,7 +82,9 @@ public class MarsRover {
 			case E:
 				return move(new Position(position.getX(), position.getY()), Direction.N,
 							instructions.substring(1, instructions.length()));
+			default:
+				throw new IllegalStateException("Unexpected value: " + direction1);
 		}
-        return null;
+
     }
 }
