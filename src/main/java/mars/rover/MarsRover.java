@@ -5,19 +5,26 @@ public class MarsRover {
     public static String move(Position position, Direction direction1, String instructions) {
         if (!instructions.isEmpty()) {
             char instruction = instructions.charAt(0);
-            if (instruction == 'L') {
-                String position1 = turnLeft(position, direction1, instructions);
-                if (position1 != null)
-                    return position1;
-            } else if (instruction == 'R') {
-                String position1 = turnRight(position, direction1, instructions);
-                if (position1 != null)
-                    return position1;
-            } else if (instruction == 'M') {
-                String position1 = goFront(position, direction1, instructions);
-                if (position1 != null)
-                    return position1;
-            }
+			switch (instruction) {
+				case 'L': {
+					String position1 = turnLeft(position, direction1, instructions);
+					if (position1 != null)
+						return position1;
+					break;
+				}
+				case 'R': {
+					String position1 = turnRight(position, direction1, instructions);
+					if (position1 != null)
+						return position1;
+					break;
+				}
+				case 'M': {
+					String position1 = goFront(position, direction1, instructions);
+					if (position1 != null)
+						return position1;
+					break;
+				}
+			}
         }
         return position.getX() + " " + position.getY() + " " + direction1;
     }
