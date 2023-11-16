@@ -8,10 +8,8 @@ import static mars.rover.Direction.W;
 public class MarsRover {
 
   public static String move(Position position, Parameters parameters) {
-    if (!parameters.getInstructions()
-		.isEmpty()) {
-      char instruction = parameters.getInstructions()
-		  .charAt(0);
+    if (!parameters.getInstructions().isEmpty()) {
+      char instruction = parameters.getInstructions().charAt(0);
       if (instruction == 'L') {
         return turnLeft(position, getParameters(parameters));
       } else if (instruction == 'R') {
