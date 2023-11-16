@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eb7ba6da-5297-4611-8145-68e6a2a0e0bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/mars/rover/MarsRover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mars/rover/MarsRover.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mars/rover/MarsRoverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mars/rover/MarsRoverTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

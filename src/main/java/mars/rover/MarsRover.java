@@ -4,56 +4,66 @@ import static mars.rover.Direction.N;
 
 public class MarsRover {
 
-  public static String move(Position position, Direction direction, String instructions) {
-    if (!instructions.isEmpty()) {
-      char instruction = instructions.charAt(0);
+  public static String move(Position position, Parameters parameters) {
+    if (!parameters.getInstructions()
+		.isEmpty()) {
+      char instruction = parameters.getInstructions()
+		  .charAt(0);
       if (instruction == 'L') {
-        return turnLeft(position, direction, instructions);
+        return turnLeft(position,
+						new Parameters(parameters.getDirection(), parameters.getInstructions()));
       } else if (instruction == 'R') {
-        return turnRight(position, direction, instructions);
+        return turnRight(position,
+						 new Parameters(parameters.getDirection(), parameters.getInstructions()));
       } else if (instruction == 'M') {
-        return  goFront(position, direction, instructions);
+        return  goFront(position,
+						new Parameters(parameters.getDirection(), parameters.getInstructions()));
       }
     }
-    return position.getX() + " " + position.getY() + " " + direction;
+    return position.getX() + " " + position.getY() + " " + parameters.getDirection();
   }
 
-  private static String goFront(Position position, Direction direction, String instructions) {
-    return switch (direction) {
+  private static String goFront(Position position, Parameters parameters) {
+    return switch (parameters.getDirection()) {
       case N -> move(
 		  new Position(position.getX(), position.getY() + 1),
-		  Direction.N, getInstructions(instructions));
+		  new Parameters(Direction.N, getInstructions(parameters.getInstructions())));
       case S -> move(
             new Position(position.getX(), position.getY() - 1),
-            Direction.S,
-            getInstructions(instructions));
+			new Parameters(Direction.S, getInstructions(parameters.getInstructions())));
       case W -> move(
             new Position(position.getX() - 1, position.getY()),
-            Direction.W,
-            getInstructions(instructions));
+			new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
 	  default -> move(
             new Position(position.getX() + 1, position.getY()),
-            Direction.E,
-            getInstructions(instructions));
+			new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
     };
   }
 
-  private static String turnRight(Position position, Direction direction, String instructions) {
-    return switch (direction) {
-      case N -> move(goNewPosition(position), Direction.E, getInstructions(instructions));
-      case W ->move(goNewPosition(position), N, getInstructions(instructions));
-      case S -> move(goNewPosition(position), Direction.W, getInstructions(instructions));
-      default -> move(goNewPosition(position), Direction.S, getInstructions(instructions));
+  private static String turnRight(Position position, Parameters parameters) {
+    return switch (parameters.getDirection()) {
+      case N -> move(goNewPosition(position),
+					 new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
+      case W ->move(goNewPosition(position), new Parameters(N, getInstructions(
+		  parameters.getInstructions())));
+      case S -> move(goNewPosition(position),
+					 new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
+      default -> move(goNewPosition(position),
+					  new Parameters(Direction.S, getInstructions(parameters.getInstructions())));
     };
 
   }
 
-  private static String turnLeft(Position position, Direction direction, String instructions) {
-    return switch (direction) {
-      case N -> move(goNewPosition(position), Direction.W, getInstructions(instructions));
-      case W -> move(goNewPosition(position), Direction.S, getInstructions(instructions));
-      case S -> move(goNewPosition(position), Direction.E, getInstructions(instructions));
-      default -> move(goNewPosition(position), N, getInstructions(instructions));
+  private static String turnLeft(Position position, Parameters parameters) {
+    return switch (parameters.getDirection()) {
+      case N -> move(goNewPosition(position),
+					 new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
+      case W -> move(goNewPosition(position),
+					 new Parameters(Direction.S, getInstructions(parameters.getInstructions())));
+      case S -> move(goNewPosition(position),
+					 new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
+      default -> move(goNewPosition(position), new Parameters(N, getInstructions(
+		  parameters.getInstructions())));
     };
   }
 
