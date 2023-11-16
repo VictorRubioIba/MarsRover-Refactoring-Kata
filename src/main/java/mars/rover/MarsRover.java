@@ -26,19 +26,20 @@ public class MarsRover {
     }
 
     private static String goFront(Position position, Direction direction1, String instructions) {
-        if (direction1.equals(Direction.N)) {
-            return move(new Position(position.getX(), position.getY() + 1),
-                        Direction.N, getInstructions(instructions));
-        } else if (direction1.equals(Direction.S)) {
-            return move(new Position(position.getX(), position.getY() - 1),
-                        Direction.S, getInstructions(instructions));
-        } else if (direction1.equals(Direction.W)) {
-            return move(new Position(position.getX() - 1, position.getY()),
-                        Direction.W, getInstructions(instructions));
-        } else if (direction1.equals(Direction.E)) {
-            return move(new Position(position.getX() + 1, position.getY()),
-                        Direction.E, getInstructions(instructions));
-        }
+		switch (direction1) {
+			case N:
+				return move(new Position(position.getX(), position.getY() + 1),
+							Direction.N, getInstructions(instructions));
+			case S:
+				return move(new Position(position.getX(), position.getY() - 1),
+							Direction.S, getInstructions(instructions));
+			case W:
+				return move(new Position(position.getX() - 1, position.getY()),
+							Direction.W, getInstructions(instructions));
+			case E:
+				return move(new Position(position.getX() + 1, position.getY()),
+							Direction.E, getInstructions(instructions));
+		}
         return null;
     }
 
