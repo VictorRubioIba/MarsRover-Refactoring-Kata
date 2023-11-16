@@ -4,18 +4,18 @@ import static mars.rover.Direction.N;
 
 public class MarsRover {
 
-  public static String move(Position position, Direction direction1, String instructions) {
+  public static String move(Position position, Direction direction, String instructions) {
     if (!instructions.isEmpty()) {
       char instruction = instructions.charAt(0);
       if (instruction == 'L') {
-        return turnLeft(position, direction1, instructions);
+        return turnLeft(position, direction, instructions);
       } else if (instruction == 'R') {
-        return turnRight(position, direction1, instructions);
+        return turnRight(position, direction, instructions);
       } else if (instruction == 'M') {
-        return  goFront(position, direction1, instructions);
+        return  goFront(position, direction, instructions);
       }
     }
-    return position.getX() + " " + position.getY() + " " + direction1;
+    return position.getX() + " " + position.getY() + " " + direction;
   }
 
   private static String goFront(Position position, Direction direction1, String instructions) {
