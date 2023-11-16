@@ -10,20 +10,21 @@ public class MarsRover {
       char instruction = parameters.getInstructions()
 		  .charAt(0);
       if (instruction == 'L') {
-        return turnLeft(position,
-						new Parameters(parameters.getDirection(), parameters.getInstructions()));
+        return turnLeft(position, getParameters(parameters));
       } else if (instruction == 'R') {
-        return turnRight(position,
-						 new Parameters(parameters.getDirection(), parameters.getInstructions()));
+        return turnRight(position, getParameters(parameters));
       } else if (instruction == 'M') {
-        return  goFront(position,
-						new Parameters(parameters.getDirection(), parameters.getInstructions()));
+        return  goFront(position, getParameters(parameters));
       }
     }
     return position.getX() + " " + position.getY() + " " + parameters.getDirection();
   }
 
-  private static String goFront(Position position, Parameters parameters) {
+	private static Parameters getParameters(Parameters parameters) {
+		return new Parameters(parameters.getDirection(), parameters.getInstructions());
+	}
+
+	private static String goFront(Position position, Parameters parameters) {
     return switch (parameters.getDirection()) {
       case N -> move(moreOneInY(position),
 		  new Parameters(Direction.N, getInstructions(parameters.getInstructions())));
@@ -79,8 +80,6 @@ public class MarsRover {
 	private static Position moreOneInY(Position position) {
 		return new Position(position.getX(), position.getY() + 1);
 	}
-
-
 
   private static Position goNewPosition(Position position) {
     return new Position(position.getX(), position.getY());
