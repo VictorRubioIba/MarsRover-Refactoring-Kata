@@ -18,8 +18,8 @@ public class MarsRover {
     return position.getX() + " " + position.getY() + " " + direction;
   }
 
-  private static String goFront(Position position, Direction direction1, String instructions) {
-    return switch (direction1) {
+  private static String goFront(Position position, Direction direction, String instructions) {
+    return switch (direction) {
       case N -> move(
 		  new Position(position.getX(), position.getY() + 1),
 		  Direction.N, getInstructions(instructions));
@@ -38,8 +38,8 @@ public class MarsRover {
     };
   }
 
-  private static String turnRight(Position position, Direction direction1, String instructions) {
-    return switch (direction1) {
+  private static String turnRight(Position position, Direction direction, String instructions) {
+    return switch (direction) {
       case N -> move(goNewPosition(position), Direction.E, getInstructions(instructions));
       case W ->move(goNewPosition(position), N, getInstructions(instructions));
       case S -> move(goNewPosition(position), Direction.W, getInstructions(instructions));
@@ -48,8 +48,8 @@ public class MarsRover {
 
   }
 
-  private static String turnLeft(Position position, Direction direction1, String instructions) {
-    return switch (direction1) {
+  private static String turnLeft(Position position, Direction direction, String instructions) {
+    return switch (direction) {
       case N -> move(goNewPosition(position), Direction.W, getInstructions(instructions));
       case W -> move(goNewPosition(position), Direction.S, getInstructions(instructions));
       case S -> move(goNewPosition(position), Direction.E, getInstructions(instructions));
