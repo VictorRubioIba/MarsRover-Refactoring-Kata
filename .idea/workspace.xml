@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb7ba6da-5297-4611-8145-68e6a2a0e0bd" name="Changes" comment="" />
+    <list default="true" id="eb7ba6da-5297-4611-8145-68e6a2a0e0bd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/mars/rover/MarsRover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mars/rover/MarsRover.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +37,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "5fd06f56",
+    "git-widget-placeholder": "VictorMarsRover202311",
     "last_opened_file_path": "/Users/victorrubioibanez/Desktop/Bootcamp Exeal/MarsRoverRefactoring/MarsRover-Refactoring-Kata",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
