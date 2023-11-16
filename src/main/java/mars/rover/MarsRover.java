@@ -25,51 +25,62 @@ public class MarsRover {
 
   private static String goFront(Position position, Parameters parameters) {
     return switch (parameters.getDirection()) {
-      case N -> move(
-		  moreOneInY(position),
+      case N -> move(moreOneInY(position),
 		  new Parameters(Direction.N, getInstructions(parameters.getInstructions())));
       case S -> move(
-            new Position(position.getX(), position.getY() - 1),
+		  lessOneInY(position),
 			new Parameters(Direction.S, getInstructions(parameters.getInstructions())));
       case W -> move(
-            new Position(position.getX() - 1, position.getY()),
+		  lessOneInX(position),
 			new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
 	  default -> move(
-            new Position(position.getX() + 1, position.getY()),
+		  moreOneInX(position),
 			new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
     };
   }
+	private static String turnRight(Position position, Parameters parameters) {
+		return switch (parameters.getDirection()) {
+			case N -> move(goNewPosition(position),
+						   new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
+			case W ->move(goNewPosition(position),
+						  new Parameters(Direction.N, getInstructions(parameters.getInstructions())));
+			case S -> move(goNewPosition(position),
+						   new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
+			default -> move(goNewPosition(position),
+							new Parameters(Direction.S, getInstructions(parameters.getInstructions())));
+		};
+
+	}
+
+	private static String turnLeft(Position position, Parameters parameters) {
+		return switch (parameters.getDirection()) {
+			case N -> move(goNewPosition(position),
+						   new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
+			case W -> move(goNewPosition(position),
+						   new Parameters(Direction.S, getInstructions(parameters.getInstructions())));
+			case S -> move(goNewPosition(position),
+						   new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
+			default -> move(goNewPosition(position), new Parameters(N, getInstructions(
+				parameters.getInstructions())));
+		};
+	}
+	private static Position moreOneInX(Position position) {
+		return new Position(position.getX() + 1, position.getY());
+	}
+
+	private static Position lessOneInX(Position position) {
+		return new Position(position.getX() - 1, position.getY());
+	}
+
+	private static Position lessOneInY(Position position) {
+		return new Position(position.getX(), position.getY() - 1);
+	}
 
 	private static Position moreOneInY(Position position) {
 		return new Position(position.getX(), position.getY() + 1);
 	}
 
-	private static String turnRight(Position position, Parameters parameters) {
-    return switch (parameters.getDirection()) {
-      case N -> move(goNewPosition(position),
-					 new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
-      case W ->move(goNewPosition(position),
-					new Parameters(Direction.N, getInstructions(parameters.getInstructions())));
-      case S -> move(goNewPosition(position),
-					 new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
-      default -> move(goNewPosition(position),
-					  new Parameters(Direction.S, getInstructions(parameters.getInstructions())));
-    };
 
-  }
-
-  private static String turnLeft(Position position, Parameters parameters) {
-    return switch (parameters.getDirection()) {
-      case N -> move(goNewPosition(position),
-					 new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
-      case W -> move(goNewPosition(position),
-					 new Parameters(Direction.S, getInstructions(parameters.getInstructions())));
-      case S -> move(goNewPosition(position),
-					 new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
-      default -> move(goNewPosition(position), new Parameters(N, getInstructions(
-		  parameters.getInstructions())));
-    };
-  }
 
   private static Position goNewPosition(Position position) {
     return new Position(position.getX(), position.getY());
