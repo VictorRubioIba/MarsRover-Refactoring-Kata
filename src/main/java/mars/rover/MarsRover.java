@@ -44,37 +44,39 @@ public class MarsRover {
     }
 
     private static String turnRight(Position position, Direction direction1, String instructions) {
-        if (direction1.equals(Direction.N)) {
-            return move(goNewPosition(position), Direction.E,
-                        getInstructions(instructions));
-        } else if (direction1.equals(Direction.W)) {
-            return move(goNewPosition(position), Direction.N,
-                        getInstructions(instructions));
-        } else if (direction1.equals(Direction.S)) {
-            return move(goNewPosition(position), Direction.W,
-                        getInstructions(instructions));
-        } else if (direction1.equals(Direction.E)) {
-            return move(goNewPosition(position), Direction.S,
-                        getInstructions(instructions));
-        }
+		switch (direction1) {
+			case N:
+				return move(goNewPosition(position), Direction.E,
+							getInstructions(instructions));
+			case W:
+				return move(goNewPosition(position), Direction.N,
+							getInstructions(instructions));
+			case S:
+				return move(goNewPosition(position), Direction.W,
+							getInstructions(instructions));
+			case E:
+				return move(goNewPosition(position), Direction.S,
+							getInstructions(instructions));
+		}
         return null;
     }
 
     private static String turnLeft(Position position, Direction direction1, String instructions) {
-        if (direction1.equals(Direction.N)) {
+		switch (direction1) {
+			case N:
 
-            return move(goNewPosition(position), Direction.W, getInstructions(instructions));
+				return move(goNewPosition(position), Direction.W, getInstructions(instructions));
 
-        } else if (direction1.equals(Direction.W)) {
-            return move(goNewPosition(position), Direction.S,
-                        getInstructions(instructions));
-        } else if (direction1.equals(Direction.S)) {
-            return move(goNewPosition(position), Direction.E,
-                        getInstructions(instructions));
-        } else if (direction1.equals(Direction.E)) {
-            return move(goNewPosition(position), Direction.N,
-                        getInstructions(instructions));
-        }
+			case W:
+				return move(goNewPosition(position), Direction.S,
+							getInstructions(instructions));
+			case S:
+				return move(goNewPosition(position), Direction.E,
+							getInstructions(instructions));
+			case E:
+				return move(goNewPosition(position), Direction.N,
+							getInstructions(instructions));
+		}
         return null;
     }
 
