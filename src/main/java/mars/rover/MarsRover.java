@@ -6,18 +6,9 @@ public class MarsRover {
         if (!instructions.isEmpty()) {
             char instruction = instructions.charAt(0);
             if (instruction == 'L') {
-                if (direction1.equals(Direction.N)) {
-                    return move(goNewPosition(position), Direction.W,
-                                getInstructions(instructions));
-                } else if (direction1.equals(Direction.W)) {
-                    return move(goNewPosition(position), Direction.S,
-                                getInstructions(instructions));
-                } else if (direction1.equals(Direction.S)) {
-                    return move(goNewPosition(position), Direction.E,
-                                getInstructions(instructions));
-                } else if (direction1.equals(Direction.E)) {
-                    return move(goNewPosition(position), Direction.N,
-                                getInstructions(instructions));
+                String position1 = turnLeft(position, direction1, instructions);
+                if (position1 != null) {
+                    return position1;
                 }
             } else if (instruction == 'R') {
                 if (direction1.equals(Direction.N)) {
@@ -50,6 +41,24 @@ public class MarsRover {
             }
         }
         return position.getX() + " " + position.getY() + " " + direction1;
+    }
+
+    private static String turnLeft(Position position, Direction direction1, String instructions) {
+        if (direction1.equals(Direction.N)) {
+
+            return move(goNewPosition(position), Direction.W, getInstructions(instructions));
+
+        } else if (direction1.equals(Direction.W)) {
+            return move(goNewPosition(position), Direction.S,
+                        getInstructions(instructions));
+        } else if (direction1.equals(Direction.S)) {
+            return move(goNewPosition(position), Direction.E,
+                        getInstructions(instructions));
+        } else if (direction1.equals(Direction.E)) {
+            return move(goNewPosition(position), Direction.N,
+                        getInstructions(instructions));
+        }
+        return null;
     }
 
     private static Position goNewPosition(Position position) {
