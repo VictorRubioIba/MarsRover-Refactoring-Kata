@@ -8,20 +8,11 @@ public class MarsRover {
     if (!instructions.isEmpty()) {
       char instruction = instructions.charAt(0);
       if (instruction == 'L') {
-        String position1 = turnLeft(position, direction1, instructions);
-        if (position1 != null) {
-          return position1;
-        }
+        return turnLeft(position, direction1, instructions);
       } else if (instruction == 'R') {
-        String position1 = turnRight(position, direction1, instructions);
-        if (position1 != null) {
-          return position1;
-        }
+        return turnRight(position, direction1, instructions);
       } else if (instruction == 'M') {
-        String position1 = goFront(position, direction1, instructions);
-        if (position1 != null) {
-          return position1;
-        }
+        return  goFront(position, direction1, instructions);
       }
     }
     return position.getX() + " " + position.getY() + " " + direction1;
