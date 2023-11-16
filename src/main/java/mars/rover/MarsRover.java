@@ -2,42 +2,54 @@ package mars.rover;
 
 public class MarsRover {
 
-    public static String move(Position position, char direction, String instructions) {
+    public static String move(Position position, Direction direction1, String instructions) {
         if (!instructions.isEmpty()) {
             char instruction = instructions.charAt(0);
             if (instruction == 'L') {
-                if (direction == 'N') {
-                    return move(goNewPosition(position), 'W', getInstructions(instructions));
-                } else if (direction == 'W') {
-                    return move(goNewPosition(position), 'S', getInstructions(instructions));
-                } else if (direction == 'S') {
-                    return move(goNewPosition(position), 'E', getInstructions(instructions));
-                } else if (direction == 'E') {
-                    return move(goNewPosition(position), 'N', getInstructions(instructions));
+                if (direction1.equals(Direction.N)) {
+                    return move(goNewPosition(position), Direction.W,
+                                getInstructions(instructions));
+                } else if (direction1.equals(Direction.W)) {
+                    return move(goNewPosition(position), Direction.S,
+                                getInstructions(instructions));
+                } else if (direction1.equals(Direction.S)) {
+                    return move(goNewPosition(position), Direction.E,
+                                getInstructions(instructions));
+                } else if (direction1.equals(Direction.E)) {
+                    return move(goNewPosition(position), Direction.N,
+                                getInstructions(instructions));
                 }
             } else if (instruction == 'R') {
-                if (direction == 'N') {
-                    return move(goNewPosition(position), 'E', getInstructions(instructions));
-                } else if (direction == 'W') {
-                    return move(goNewPosition(position), 'N', getInstructions(instructions));
-                } else if (direction == 'S') {
-                    return move(goNewPosition(position), 'W', getInstructions(instructions));
-                } else if (direction == 'E') {
-                    return move(goNewPosition(position), 'S', getInstructions(instructions));
+                if (direction1.equals(Direction.N)) {
+                    return move(goNewPosition(position), Direction.E,
+                                getInstructions(instructions));
+                } else if (direction1.equals(Direction.W)) {
+                    return move(goNewPosition(position), Direction.N,
+                                getInstructions(instructions));
+                } else if (direction1.equals(Direction.S)) {
+                    return move(goNewPosition(position), Direction.W,
+                                getInstructions(instructions));
+                } else if (direction1.equals(Direction.E)) {
+                    return move(goNewPosition(position), Direction.S,
+                                getInstructions(instructions));
                 }
             } else if (instruction == 'M') {
-                if (direction == 'N') {
-                    return move(new Position(position.getX(), position.getY() + 1), 'N', getInstructions(instructions));
-                } else if (direction == 'S') {
-                    return move(new Position(position.getX(), position.getY() - 1), 'S', getInstructions(instructions));
-                } else if (direction == 'W') {
-                    return move(new Position(position.getX() - 1, position.getY()), 'W', getInstructions(instructions));
-                } else if (direction == 'E') {
-                    return move(new Position(position.getX() + 1, position.getY()), 'E', getInstructions(instructions));
+                if (direction1.equals(Direction.N)) {
+                    return move(new Position(position.getX(), position.getY() + 1),
+                                Direction.N, getInstructions(instructions));
+                } else if (direction1.equals(Direction.S)) {
+                    return move(new Position(position.getX(), position.getY() - 1),
+                                Direction.S, getInstructions(instructions));
+                } else if (direction1.equals(Direction.W)) {
+                    return move(new Position(position.getX() - 1, position.getY()),
+                                Direction.W, getInstructions(instructions));
+                } else if (direction1.equals(Direction.E)) {
+                    return move(new Position(position.getX() + 1, position.getY()),
+                                Direction.E, getInstructions(instructions));
                 }
             }
         }
-        return position.getX() + " " + position.getY() + " " + direction;
+        return position.getX() + " " + position.getY() + " " + direction1;
     }
 
     private static Position goNewPosition(Position position) {
