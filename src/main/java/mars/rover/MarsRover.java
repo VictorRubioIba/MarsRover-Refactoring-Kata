@@ -26,7 +26,7 @@ public class MarsRover {
   private static String goFront(Position position, Parameters parameters) {
     return switch (parameters.getDirection()) {
       case N -> move(
-		  new Position(position.getX(), position.getY() + 1),
+		  moreOneInY(position),
 		  new Parameters(Direction.N, getInstructions(parameters.getInstructions())));
       case S -> move(
             new Position(position.getX(), position.getY() - 1),
@@ -40,12 +40,16 @@ public class MarsRover {
     };
   }
 
-  private static String turnRight(Position position, Parameters parameters) {
+	private static Position moreOneInY(Position position) {
+		return new Position(position.getX(), position.getY() + 1);
+	}
+
+	private static String turnRight(Position position, Parameters parameters) {
     return switch (parameters.getDirection()) {
       case N -> move(goNewPosition(position),
 					 new Parameters(Direction.E, getInstructions(parameters.getInstructions())));
-      case W ->move(goNewPosition(position), new Parameters(N, getInstructions(
-		  parameters.getInstructions())));
+      case W ->move(goNewPosition(position),
+					new Parameters(Direction.N, getInstructions(parameters.getInstructions())));
       case S -> move(goNewPosition(position),
 					 new Parameters(Direction.W, getInstructions(parameters.getInstructions())));
       default -> move(goNewPosition(position),
