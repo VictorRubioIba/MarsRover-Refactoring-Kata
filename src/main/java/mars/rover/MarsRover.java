@@ -46,28 +46,24 @@ public class MarsRover {
   }
 	private static String turnRight(Position position, Parameters parameters) {
 		return switch (parameters.getDirection()) {
-			case N -> move(goNewPosition(position),
-						   new Parameters(E, getInstructions(parameters.getInstructions())));
-			case W ->move(goNewPosition(position),
-						  new Parameters(N, getInstructions(parameters.getInstructions())));
-			case S -> move(goNewPosition(position),
-						   new Parameters(W, getInstructions(parameters.getInstructions())));
-			default -> move(goNewPosition(position),
-							new Parameters(S, getInstructions(parameters.getInstructions())));
+			case N -> move(goNewPosition(position), setParameters(E,parameters));
+			case W ->move(goNewPosition(position), setParameters(N,parameters));
+			case S -> move(goNewPosition(position), setParameters(W,parameters));
+			default -> move(goNewPosition(position), setParameters(S,parameters));
 		};
 
 	}
 
+	private static Parameters setParameters(Direction direction,Parameters parameters) {
+		return new Parameters(direction, getInstructions(parameters.getInstructions()));
+	}
+
 	private static String turnLeft(Position position, Parameters parameters) {
 		return switch (parameters.getDirection()) {
-			case N -> move(goNewPosition(position),
-						   new Parameters(W, getInstructions(parameters.getInstructions())));
-			case W -> move(goNewPosition(position),
-						   new Parameters(S, getInstructions(parameters.getInstructions())));
-			case S -> move(goNewPosition(position),
-						   new Parameters(E, getInstructions(parameters.getInstructions())));
-			default -> move(goNewPosition(position), new Parameters(N, getInstructions(
-				parameters.getInstructions())));
+			case N -> move(goNewPosition(position), setParameters(W,parameters));
+			case W -> move(goNewPosition(position), setParameters(S,parameters));
+			case S -> move(goNewPosition(position), setParameters(E,parameters));
+			default -> move(goNewPosition(position), setParameters(N,parameters));
 		};
 	}
 	private static Position moreOneInX(Position position) {
